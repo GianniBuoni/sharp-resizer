@@ -1,10 +1,12 @@
 import { createId } from "@paralleldrive/cuid2";
 import sharp from "sharp";
 
-const args = process.argv.slice(2);
+const fileArray = process.argv.slice(2);
 
 const init = () => {
-  args.forEach(async (oldImage) => {
+  console.log("⚡ Starting image conversion! ⚡\n");
+
+  fileArray.forEach(async (oldImage) => {
     try {
       const newName = createId();
       await sharp(oldImage)
@@ -13,7 +15,9 @@ const init = () => {
         })
         .toFormat("avif")
         .rotate()
-        .toFile(`./resized/${newName}`);
+        .toFile(`./resized/${newName}.avif`);
+
+      console.log(`${oldImage} is now ${newName}`);
     } catch (e) {
       console.log(e);
     }
