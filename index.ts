@@ -1,7 +1,6 @@
 import * as p from "@clack/prompts";
 import { setTimeout } from "node:timers/promises";
 import resizer from "./lib/sharp.js";
-import fileParse from "./lib/fileParse.js";
 
 const init = async () => {
   const group = await p.group({
@@ -31,7 +30,7 @@ const init = async () => {
             value: "jpg",
             label: "JPEG: compressed and widely supported by legacy systems.",
           },
-          { value: "tiff", label: "TIFF: lossless and supports layers." },
+          { value: "tif", label: "TIFF: lossless and supports layers." },
         ],
       }),
     output: ({ results }) =>
@@ -52,11 +51,13 @@ const init = async () => {
     await setTimeout(1000);
 
     const { fileDir, width, format, output } = group;
-    fileParse({
-      format: format,
-      width: Number(width),
-      fileDir: fileDir,
-      output: output,
+    resizer({
+      outputWidth: Number(width),
+      fileString: fileDir,
+      //@ts-ignore
+      outputDir: output,
+      //@ts-ignore
+      outputFormat: format,
     });
     s.stop("✨ Images are now resized! ✨");
   }
