@@ -37,6 +37,10 @@ const init = async () => {
       p.text({
         message: "Where do you want the new files to save?",
         initialValue: results.fileDir!.replace("*", ""),
+        validate(value) {
+          if (value.includes("~"))
+            return "Output Directory must be relative or absolute, without aliasing.";
+        },
       }),
     confirm: ({ results }) =>
       p.confirm({
