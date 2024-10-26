@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as p from "@clack/prompts";
 import { setTimeout } from "node:timers/promises";
 import resizer from "./lib/sharp.js";
@@ -8,7 +10,7 @@ const init = async () => {
       p.text({
         message:
           "Where are the files you want to convert?\nPoint to a single file or directory of images.",
-        initialValue: "./tests/*",
+        initialValue: "./*.png",
         validate(value) {
           if (value.length === 0) return "Directory is required!";
         },
