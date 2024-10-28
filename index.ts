@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import * as p from "@clack/prompts";
 import { setTimeout } from "node:timers/promises";
 import resizer from "./lib/sharp.js";
