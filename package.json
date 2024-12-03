@@ -10,12 +10,11 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "@paralleldrive/cuid2": "^2.2.2",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
-    "tsx": "^4.19.1",
     "@types/node": "^22.7.4",
+    "tsx": "^4.19.1",
     "typescript": "^5.6.2"
   },
   "packageManager": "pnpm@9.11.0"

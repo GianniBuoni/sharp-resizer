@@ -1,6 +1,7 @@
-import { createId } from "@paralleldrive/cuid2";
 import { exec } from "node:child_process";
 import sharp from "sharp";
+
+import nameSearch from "./regex";
 
 interface Props {
   fileString: string;
@@ -22,7 +23,7 @@ const resizer = ({
     const fileArray = out.replace("\n", "").split(" ");
     fileArray.forEach(async (oldImage) => {
       try {
-        const newName = createId();
+        const newName = nameSearch(oldImage);
 
         await sharp(oldImage)
           .resize({
